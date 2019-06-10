@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MapboxTest.Forms.Pages.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:MapboxTest.Forms.Behaviors;assembly=MapboxTest.Forms"
+             xmlns:viewModel="clr-namespace:MapboxTest.Forms.ViewModel;assembly=MapboxTest.Forms"
+             Title="{Binding PageTitle}">
+
+    <ContentPage.Behaviors>
+        <behaviors:PageBehavior />
+    </ContentPage.Behaviors>
+
+    <ContentPage.BindingContext>
+        <viewModel:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid VerticalOptions="FillAndExpand">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="25*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding DownloadCommand}"
+                Text="Download Chennai region" />
+
+        <Button Grid.Row="2"
+                Grid.Column="1"
+                Command="{Binding NavigateToMapPageCommand}"
+                Text="View Map" />
+
+        <Frame Grid.Row="0"
+               Grid.RowSpan="4"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               BackgroundColor="#85000000"
+               IsVisible="{Binding IsBusy}"
+               VerticalOptions="FillAndExpand">
+            <Grid VerticalOptions="CenterAndExpand">
+                <ActivityIndicator HeightRequest="100"
+                                   IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   WidthRequest="100" />
+                <Label HorizontalOptions="CenterAndExpand"
+                       Text="{Binding DownloadedPercentage, Mode=TwoWay, StringFormat='{0}%'}"
+                       TextColor="White"
+                       VerticalOptions="CenterAndExpand"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

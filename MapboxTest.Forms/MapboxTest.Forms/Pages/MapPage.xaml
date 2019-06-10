@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MapboxTest.Forms.Pages.MapPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MapboxTest.Forms.Controls;assembly=MapboxTest.Forms"
+             xmlns:viewModel="clr-namespace:MapboxTest.Forms.ViewModel;assembly=MapboxTest.Forms"
+             Title="{Binding PageTitle}">
+
+    <ContentPage.BindingContext>
+        <viewModel:MapPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <controls:MapBoxMapView Grid.Row="0" />
+            <Label Grid.Row="1"
+                   FontSize="Medium"
+                   Text="This is to show that map is loaded from the Forms and rendered with custom renderer using the Xamarin.Android version of Mapbox SDK" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
